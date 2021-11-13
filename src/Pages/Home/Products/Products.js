@@ -1,32 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Container } from '@mui/material';
+import { Container } from 'react-bootstrap';
+import useCart from '../../../hooks/useCart';
+import { addToDb } from '../../../utilities/fakedb';
 import Product from '../Product/Product';
 
 
 const Products = () => {
     const [products, setProducts] = useState([])
-    const product = products.splice(6, 10);
-    console.log(product);
+    const [cart, setCart] = useCart(products);
+
     useEffect(() => {
-        fetch('/product.json')
+        fetch('https://limitless-waters-39407.herokuapp.com/products')
             .then(res => res.json())
-            .then(data => setProducts(data));
+            .then(data => {
+                setProducts(data);
+            });
     }, [])
+
+    const handleAddToCart = (product) => {
+        const exists = cart.find(pd => pd._id === product._id);
+        let newCart = [];
+        if (exists) {
+            const rest = cart.filter(pd => pd._id !== product._id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, product];
+        }
+        else {
+            product.quantity = 1;
+            newCart = [...cart, product];
+        }
+        setCart(newCart);
+        addToDb(product._id);
+    }
+
     return (
-        <Box id="products" sx={{ flexGrow: 1 }} mt={10}>
+        <div id="products">
+            <h2 className="text-primary mt-5">Our Products</h2>
             <Container>
-                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <div className="row">
                     {
                         products.map(product => <Product
-                            key={product.id}
+                            key={product._id}
                             product={product}
+                            handleAddToCart={handleAddToCart}
                         ></Product>)
                     }
-                </Grid>
+                </div>
             </Container>
-        </Box>
+        </div>
     );
 };
 

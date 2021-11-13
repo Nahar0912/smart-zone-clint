@@ -8,8 +8,11 @@ import NotFound from './Pages/NotFound/NotFound';
 import Products from './Pages/Home/Products/Products';
 import Footer from './Pages/Footer/Footer';
 import AuthProvider from './context/AuthProvider';
-import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
+import Login from './Pages/Login/Login/Login';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+import AddProduct from './Pages/AddProduct/AddProduct';
+import OrderReview from './Pages/OrderReview/OrderReview';
 
 
 function App() {
@@ -37,6 +40,12 @@ function App() {
             <Route path="/register">
               <Register></Register>
             </Route>
+            <Route path="/addProduct">
+              <AddProduct></AddProduct>
+            </Route>
+            < PrivateRoute path="/review/:productId">
+              <OrderReview></OrderReview>
+            </PrivateRoute>
             <Route path='*'>
               <NotFound></NotFound>
             </Route>

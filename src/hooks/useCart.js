@@ -6,23 +6,23 @@ const useCart = () => {
 
     useEffect(() => {
         const savedCart = getStoredCart();
-        const keys = Object.keys(savedCart);
-        fetch('http://localhost:5000/products/byKeys', {
+        const _id = Object.keys(savedCart);
+        fetch('https://limitless-waters-39407.herokuapp.com/products/:id', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(keys)
+            body: JSON.stringify(_id)
         })
             .then(res => res.json())
             .then(products => {
                 if (products.length) {
                     const storedCart = [];
-                    for (const key in savedCart) {
-                        const addedProduct = products.find(product => product.key === key);
+                    for (const _id in savedCart) {
+                        const addedProduct = products.find(product => product._id === _id);
                         if (addedProduct) {
                             // set quantity
-                            const quantity = savedCart[key];
+                            const quantity = savedCart[_id];
                             addedProduct.quantity = quantity;
                             storedCart.push(addedProduct);
                         }

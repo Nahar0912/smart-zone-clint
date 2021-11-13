@@ -1,39 +1,29 @@
-import Grid from '@mui/material/Grid';
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
-const Product = ({product}) => {
-    const { name, img } = product;
+const Product = (props) => {
+    const { _id, name, description, price, img } = props.product;
     return (
-        <div>
-            <Grid item xs={4} sm={4} md={4} ml={5} my={5}>
-                <Card sx={{ minWidth: 350, border: 0 ,boxShadow: 2 }}>
-                    <CardMedia
-                        component="img"
-                        style={{width:'auto', height:'100px', margin: '0 auto'}}
-                        image={img}
-                    />
-                    <CardContent>
-                        <Typography variant="h5" component="div">
-                        {name}
-                        </Typography>
-                        <Typography variant="body2">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Buy Now</Button>
-                    </CardActions>
-                </Card>
-            </Grid>
+        <div className="col-lg-4 col-md-6 col-sm-12 c-cart my-3">
+            <Card>
+                <Card.Body>
+                    <div className="text-center">
+                        <img src={img} alt="" width='80%' height='200px'/>
+                    </div>
+                    <Card.Title className="text-center"><h2>{name}</h2></Card.Title>
+                    <Card.Text>
+                        <p>{description}</p>
+                    </Card.Text>
+                    <div>
+                        <h3>Price: {price} $</h3>
+                    </div>
+                    <Link  to={`/review/${_id}`}>
+                        <button onClick={() => props.handleAddToCart(props.product)} className="btn btn-secondary">Buy Now</button>
+                    </Link>
+                </Card.Body>             
+            </Card>
         </div>
     );
 };

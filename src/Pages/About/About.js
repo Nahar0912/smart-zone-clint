@@ -5,14 +5,14 @@ const About = () => {
         <div className='conatiner'>
             <div className='d-flex row align-items-center'>
                 <div className='col-lg-6 col-md-6 col-12'>
-                    <img src={'https://image.freepik.com/free-photo/hammocks-umbrella-placed-near-large-pool_1203-192.jpg'} alt="" width='680px' height='500px'/>
+                    <img src={'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c21hcnRwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'} alt="" width='680px' height='500px'/>
                 </div>
                 <div className='col-lg-6 col-md-6 col-12'>
                     <h1>Know About Us</h1>
                     <br />
-                    <p>Our 50 Acre mountain facing property consists of 6 Resorts incl 250 rooms, 27 room types, 2 Presidential Suites, 4 Junior Suites, 16 Designer Suites, 24 Hrs fine dining restaurant, 6 multi cuisine Restaurants, 6 Bar Lounges, Nightclub, 10 Indoor Banquets, 12 Outdoor Wedding Venues, 3 Boardrooms, Business Centre, 1000 Pax Amphitheatre, 3 Swimming Pools 24 Hrs, 18 Villa Pools, 50 private gardens, 24 Hrs Spa/ Fitness Centre, Salon, Chopper landing facility, largest extreme Adventure Park with over 70+ activities, DATA Military Style Training Academy Obstacle Course, Della Gallery- 50,000 sq ft India’s largest luxury interior experience centre, 2 Merchandising Stores, 24 Hrs convenience store, Fudge store, Bakery, Photo/Video Gallery, Pet Friendly property… all this and more served by our passionate team of 1650+ permanent employees who believe in the Philosophy of Never Say No take great pride in our exceptional quality of food and service.</p>
+                    <p>SmartZone.com aims to be the most useful and trusted mobile phone info site of Bangladesh. We are serving an online database of carefully selected fine quality latest mobile phones, their prices, full specifications, reviews etc. for the benefit of the consumers. Phones in our site can be found by different useful categories such as brands, price range etc. We are not a seller and we do not sell any products via SmartZone</p>
                     <br />
-                    <h4>Our email: venisaresort@gmail.com</h4>
+                    <h4>Our email: smartzone@gmail.com</h4>
                 </div>
             </div>
         </div>
