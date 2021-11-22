@@ -1,18 +1,18 @@
 // use local storage as your db for now
-const addToDb = _id => {
+const addToDb = id => {
   const exists = getDb();
   let shopping_cart = {};
   if (!exists) {
-    shopping_cart[_id] = 1;
+    shopping_cart[id] = 1;
   }
   else {
     shopping_cart = JSON.parse(exists);
-    if (shopping_cart[_id]) {
-      const newCount = shopping_cart[_id] + 1;
-      shopping_cart[_id] = newCount;
+    if (shopping_cart[id]) {
+      const newCount = shopping_cart[id] + 1;
+      shopping_cart[id] = newCount;
     }
     else {
-      shopping_cart[_id] = 1;
+      shopping_cart[id] = 1;
     }
   }
   updateDb(shopping_cart);
@@ -24,14 +24,14 @@ const updateDb = cart => {
   localStorage.setItem('shopping_cart', JSON.stringify(cart));
 }
 
-const removeFromDb = _id => {
+const removeFromDb = id => {
   const exists = getDb();
   if (!exists) {
 
   }
   else {
     const shopping_cart = JSON.parse(exists);
-    delete shopping_cart[_id];
+    delete shopping_cart[id];
     updateDb(shopping_cart);
   }
 }

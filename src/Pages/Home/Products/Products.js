@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useCart from '../../../hooks/useCart';
 import { addToDb } from '../../../utilities/fakedb';
+import Cart from '../../Cart/Cart';
 import Product from '../Product/Product';
 
 
 const Products = () => {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
     const [cart, setCart] = useCart(products);
+    const [displayProducts, setDisplayProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://limitless-waters-39407.herokuapp.com/products')
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
+                setDisplayProducts(data);
             });
     }, [])
 
     const handleAddToCart = (product) => {
-        const exists = cart.find(pd => pd._id === product._id);
+        const exists = cart.find(pd => pd.key === product.key);
         let newCart = [];
         if (exists) {
-            const rest = cart.filter(pd => pd._id !== product._id);
+            const rest = cart.filter(pd => pd.key !== product.key);
             exists.quantity = exists.quantity + 1;
             newCart = [...rest, product];
         }
@@ -30,7 +34,7 @@ const Products = () => {
             newCart = [...cart, product];
         }
         setCart(newCart);
-        addToDb(product._id);
+        addToDb(product.key);
     }
 
     return (
@@ -39,12 +43,19 @@ const Products = () => {
             <Container>
                 <div className="row">
                     {
-                        products.map(product => <Product
-                            key={product._id}
+                        displayProducts.map(product => <Product
+                            key={product.key}
                             product={product}
                             handleAddToCart={handleAddToCart}
                         ></Product>)
                     }
+                </div>
+                <div className="cart-container">
+                    <Cart cart={cart}>
+                        <Link to="/review">
+                            <button className="btn-regular">Review Your Order</button>
+                        </Link>
+                    </Cart>
                 </div>
             </Container>
         </div>

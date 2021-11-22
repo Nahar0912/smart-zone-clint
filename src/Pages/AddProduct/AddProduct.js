@@ -9,7 +9,7 @@ const AddProduct = () => {
     const onSubmit = data => {
         console.log(data);
 
-        axios.post('https://limitless-waters-39407.herokuapp.com/products', data)
+        axios.post('https://localhost:5000/products', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');
@@ -22,7 +22,8 @@ const AddProduct = () => {
         <div className="add-service">
             <h2>Please Add a Products</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
+                <input {...register("key")} placeholder="key" />
+                <input {...register("name", { required: true, maxLength: 30 })} placeholder="Name" />
                 <textarea {...register("description")} placeholder="Description" />
                 <input type="number" {...register("price")} placeholder="price" />
                 <input {...register("img")} placeholder="image url" />

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Product = (props) => {
-    const { _id, name, description, price, img } = props.product;
+    const { name, description, price, img } = props.product;
     return (
         <div className="col-lg-4 col-md-6 col-sm-12 c-cart my-3">
             <Card>
@@ -19,7 +19,7 @@ const Product = (props) => {
                     <div>
                         <h3>Price: {price} $</h3>
                     </div>
-                    <Link  to={`/review/${_id}`}>
+                    <Link>
                         <button onClick={() => props.handleAddToCart(props.product)} className="btn btn-secondary">Buy Now</button>
                     </Link>
                 </Card.Body>             
